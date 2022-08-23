@@ -48,7 +48,7 @@ class ItemController extends Controller
 
         Item::create($attributes);
 
-        return redirect('/');
+        return redirect('/dashboard');
     }
 
     /**
@@ -82,7 +82,9 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item, int $mode)
     {
-
+        request()->validate([
+            'amount' => 'required|numeric',
+        ]);
         if($mode == 1)
             $item->update(['amount' => $item->amount += (float)$request->amount]);
         else

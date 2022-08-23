@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,9 +14,25 @@ use App\Http\Controllers\ItemController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    if (!Auth::check()) {
+        User::factory()->create([
+            'username' => 'admin',
+            'password' => bcrypt('password'),
+        ]);
+        return view('login');
+    }
+    else{
+        return redirect('/dashboard');
+    }
+});
 
-Route::get('/',[ItemController::class,'index']);
-Route::get('/create',[ItemController::class,'create']);
-Route::post('/create',[ItemController::class,'store']);
-Route::delete('/{item}',[ItemController::class,'destroy']);
-Route::post('/{item}/{mode}',[ItemController::class,'update']);
+
+Route::get('/logout',[UserController::class,'destroy'])->middleware('auth');
+Route::get('/dashboard',[ItemController::class,'index'])->middleware('auth');
+Route::post('/login',[UserController::class,'create'])->middleware('guest');
+
+Route::get('/create',[ItemController::class,'create'])->middleware('auth');
+Route::post('/create',[ItemController::class,'store'])->middleware('auth');
+Route::delete('/{item}',[ItemController::class,'destroy'])->middleware('auth');
+Route::post('/{item}/{mode}',[ItemController::class,'update'])->middleware('auth');

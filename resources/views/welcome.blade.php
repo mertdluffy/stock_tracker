@@ -20,7 +20,7 @@
     <body class="antialiased">
     <header class="container d-flex justify-content-between">
         <h1 class="my-4">Stocks</h1>
-        <form method="GET" action="/">
+        <form method="GET" action="/dashboard">
 
             <input value="{{request('search')}}" type="text" name="search" placeholder="Find item"
                    class="mt-4 bg-transparent placeholder-black font-semibold text-sm">
@@ -29,6 +29,11 @@
             @csrf
 
             <button class="mb-4" style="margin:10px; height:50px; background-color: #ADFF2F;">Create New Item</button>
+        </form>
+        <form method="GET" action="/logout">
+            @csrf
+
+            <button class="mb-4 bg-primary" style="margin:10px; height:50px;">Log Out</button>
         </form>
     </header>
     <div class="container p-6 ">
