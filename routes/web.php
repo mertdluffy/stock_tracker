@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 use App\Models\User;
+use App\Models\Category;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,10 +18,19 @@ use App\Models\User;
 */
 Route::get('/', function () {
     if (!Auth::check()) {
-        User::factory()->create([
-            'username' => 'admin',
-            'password' => bcrypt('password'),
-        ]);
+        try {
+            User::factory()->create([
+                'username' => 'admin',
+                'password' => bcrypt('password'),
+            ]);
+            Category::factory()->create([
+                'name' => 'Default',
+                'slug' => 'default',
+            ]);
+        }catch (Exception $e){
+            ;
+        }
+
         return view('login');
     }
     else{
@@ -32,6 +43,8 @@ Route::get('/logout',[UserController::class,'destroy'])->middleware('auth');
 Route::get('/dashboard',[ItemController::class,'index'])->middleware('auth');
 Route::post('/login',[UserController::class,'create'])->middleware('guest');
 
+Route::post('/create/category',[CategoryController::class,'store'])->middleware('auth');
+Route::get('/create/category',[CategoryController::class,'create'])->middleware('auth');
 Route::get('/create',[ItemController::class,'create'])->middleware('auth');
 Route::post('/create',[ItemController::class,'store'])->middleware('auth');
 Route::delete('/{item}',[ItemController::class,'destroy'])->middleware('auth');

@@ -1,24 +1,24 @@
 @props(['item','mode'])
 
 <tr>
-    <th scope="row">{{$item->id}}</th>
-    <td>{{$item->name}}</td>
+    <th scope="row">{{$item->name}}</th>
+    <td>{{$item->category->name}}</td>
     <td>{{$item->amount}}</td>
     <td>{{$item->type}}</td>
     <td>
-        <form method="POST" action="/{{$item->id}}/1">
+        <form method="POST" action="/{{$item->id}}/1" class="flex justify-evenly">
             @csrf
 
             <x-form_input name="amount" />
-            <button class="text-xs" style ="background-color: #ADFF2F;">Add</button>
+            <x-submit_button color="green-100">Add</x-submit_button>
         </form>
     </td>
     <td>
-        <form method="POST" action="/{{$item->id}}/0">
+        <form method="POST" action="/{{$item->id}}/0" class="flex justify-evenly">
             @csrf
 
             <x-form_input name="amount" />
-            <button class="mx-6 text-xs" style ="background-color: #F08080">Remove</button>
+            <x-submit_button color="red-100">Remove</x-submit_button>
         </form>
     </td>
     <td>
@@ -26,7 +26,7 @@
             @csrf
             @method('DELETE')
 
-            <button class="text-xs" style="border: solid;">Delete</button>
+            <x-submit_button>Delete</x-submit_button>
         </form>
     </td>
 </tr>

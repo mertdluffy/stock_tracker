@@ -43,8 +43,8 @@ class ItemController extends Controller
         $attributes = request()->validate([
             'name' => ['required', Rule::unique('items','name')],
             'type' => 'required',
+            'category_id' => 'required',
         ]);
-
 
         Item::create($attributes);
 
