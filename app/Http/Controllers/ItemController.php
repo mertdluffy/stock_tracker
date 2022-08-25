@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -17,8 +18,8 @@ class ItemController extends Controller
     {
         return view('welcome',[
             'items' => Item::latest()
-                ->filter(request(['search']))
-                ->paginate(4)
+                ->filter(request(['search','category']))
+                ->paginate(6)
         ]);
     }
 
