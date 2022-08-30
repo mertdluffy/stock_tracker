@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use App\Models\User;
+use App\Models\Category;
+
 
 class UserController extends Controller
 {
@@ -30,5 +33,29 @@ class UserController extends Controller
     public function destroy(){
         auth()->logout();
         return redirect('/');
+    }
+
+    public function store(){
+        if (!auth()->check()) {
+            try {
+                User::factory()->create([
+                    'username' => 'admin',
+                    'password' => bcrypt('password'),
+                ]);
+                if(count(Category::all()) == 0) {
+                    Category::factory()->create([
+                        'name' => 'Default',
+                        'slug' => 'default',
+                    ]);
+                }
+            }catch (Exception $e){
+                ;
+            }
+
+            return view('login');
+        }
+        else{
+            return redirect('/dashboard');
+        }
     }
 }

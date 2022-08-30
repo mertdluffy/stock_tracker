@@ -16,27 +16,7 @@ use App\Models\Category;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    if (!Auth::check()) {
-        try {
-            User::factory()->create([
-                'username' => 'admin',
-                'password' => bcrypt('password'),
-            ]);
-            Category::factory()->create([
-                'name' => 'Default',
-                'slug' => 'default',
-            ]);
-        }catch (Exception $e){
-            ;
-        }
-
-        return view('login');
-    }
-    else{
-        return redirect('/dashboard');
-    }
-});
+Route::get('/', [UserController::class,'store']);
 
 
 Route::get('/logout',[UserController::class,'destroy'])->middleware('auth');
