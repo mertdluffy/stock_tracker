@@ -7,6 +7,7 @@
             @csrf
             <x-form_input name="name"/>
             <x-form_input name="type"/>
+            <x-form_input name="price"/>
             <div class="mb-6">
                 <x-form_label name="Category"/>
                 <select name="category_id" id="category_id">

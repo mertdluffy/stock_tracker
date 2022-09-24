@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('category_id');
             $table->String('name')->unique();;
             $table->float('amount')->default(0);
+            $table->float('price');
             $table->String('type');
             $table->timestamps();
         });

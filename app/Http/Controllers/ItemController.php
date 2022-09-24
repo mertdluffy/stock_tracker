@@ -45,6 +45,7 @@ class ItemController extends Controller
             'name' => ['required', Rule::unique('items','name')],
             'type' => 'required',
             'category_id' => 'required',
+            'price' => 'required',
         ]);
 
         Item::create($attributes);

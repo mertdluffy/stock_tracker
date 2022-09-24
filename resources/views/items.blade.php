@@ -38,6 +38,7 @@
                 <th scope="col">Category</th>
                 <th scope="col">Amount</th>
                 <th scope="col">Type</th>
+                <th scope="col">Price</th>
                 <th scope="col">Add Stock</th>
                 <th scope="col">Remove Stock</th>
                 <th scope="col">Delete Item</th>

@@ -5,6 +5,7 @@
     <td>{{$item->category->name}}</td>
     <td>{{$item->amount}}</td>
     <td>{{$item->type}}</td>
+    <td>{{$item->price}} $</td>
     <td>
         <form method="POST" action="/{{$item->id}}/1" class="flex justify-evenly">
             @csrf

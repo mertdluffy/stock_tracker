@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','type','category_id'];
+    protected $fillable = ['name','type','category_id','price'];
 
     public function scopeFilter($query, array $filters)
     {
