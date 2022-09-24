@@ -5,6 +5,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ShoppingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,12 @@ Route::get('/', [UserController::class,'store']);
 Route::get('/customers',[CustomerController::class,'index'])->middleware('auth');
 Route::post('/create/customer',[CustomerController::class,'store'])->middleware('auth');
 Route::get('/create/customer',[CustomerController::class,'create'])->middleware('auth');
+
+Route::post('/customer/{customer}/shoppings',[ShoppingController::class,'index'])->middleware('auth');
+Route::get('/customer/{customer}/shoppings',[ShoppingController::class,'index'])->middleware('auth');
+Route::get('/create/shopping',[ShoppingController::class,'create'])->middleware('auth');
+Route::post('/create/shopping',[ShoppingController::class,'store'])->middleware('auth');
+Route::delete('/shopping/{shopping}',[ShoppingController::class,'destroy'])->middleware('auth');
 
 Route::get('/logout',[UserController::class,'destroy'])->middleware('auth');
 Route::post('/login',[UserController::class,'create'])->middleware('guest');

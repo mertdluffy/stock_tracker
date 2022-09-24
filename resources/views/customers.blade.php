@@ -6,8 +6,8 @@
 
             <x-submit_button color="green-500">Stocks</x-submit_button>
         </form>
-        <form method="GET" action="/dashboard">
-            <input value="{{request('search')}}" type="text" name="search" placeholder="Find item"
+        <form method="GET" action="/customers">
+            <input value="{{request('search')}}" type="text" name="search" placeholder="Find Customer"
                    class="p-2 mt-4 bg-transparent placeholder-black font-semibold text-sm border border-sky-500 rounded-full">
         </form>
 

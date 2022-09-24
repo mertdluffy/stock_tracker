@@ -18,4 +18,9 @@ class Customer extends Model
         )
         );
     }
+
+    public function shopping()
+    {
+        return $this->hasMany(Shopping::class);
+    }
 }
