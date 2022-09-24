@@ -1,6 +1,11 @@
 <x-layout>
     <header class="container d-flex justify-content-between">
         <h1 class="my-4">Stocks</h1>
+        <form method="GET" action="/customers">
+            @csrf
+
+            <x-submit_button color="green-500">Customers</x-submit_button>
+        </form>
         <form method="GET" action="/dashboard">
             @if(request('category'))
                 <input type="hidden" name="category" value="{{request('category')}}">

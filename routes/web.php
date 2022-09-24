@@ -4,8 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
-use App\Models\User;
-use App\Models\Category;
+use App\Http\Controllers\CustomerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,14 +18,22 @@ use App\Models\Category;
 */
 Route::get('/', [UserController::class,'store']);
 
+Route::get('/customers',[CustomerController::class,'index'])->middleware('auth');
+Route::post('/create/customer',[CustomerController::class,'store'])->middleware('auth');
+Route::get('/create/customer',[CustomerController::class,'create'])->middleware('auth');
 
 Route::get('/logout',[UserController::class,'destroy'])->middleware('auth');
-Route::get('/dashboard',[ItemController::class,'index'])->middleware('auth');
 Route::post('/login',[UserController::class,'create'])->middleware('guest');
+
+Route::get('/dashboard',[ItemController::class,'index'])->middleware('auth');
 
 Route::post('/create/category',[CategoryController::class,'store'])->middleware('auth');
 Route::get('/create/category',[CategoryController::class,'create'])->middleware('auth');
 Route::get('/create',[ItemController::class,'create'])->middleware('auth');
+
 Route::post('/create',[ItemController::class,'store'])->middleware('auth');
 Route::delete('/{item}',[ItemController::class,'destroy'])->middleware('auth');
 Route::post('/{item}/{mode}',[ItemController::class,'update'])->middleware('auth');
+
+
+

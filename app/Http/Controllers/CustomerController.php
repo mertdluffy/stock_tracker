@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Item;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
-class ItemController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +15,12 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return view('items',[
-            'items' => Item::latest()
+        return view('customers',[
+            'customers' => Customer::latest()
                 ->filter(request(['search','category']))
                 ->paginate(6)
         ]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -30,7 +28,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('create_item');
+        return view('create_customer');
     }
 
     /**
@@ -41,24 +39,23 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+
         $attributes = request()->validate([
-            'name' => ['required', Rule::unique('items','name')],
-            'type' => 'required',
-            'category_id' => 'required',
+            'name' => ['required', Rule::unique('customers','name')],
         ]);
 
-        Item::create($attributes);
+        Customer::create($attributes);
 
-        return redirect('/dashboard');
+        return redirect('/customers');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
+    public function show(Customer $customer)
     {
         //
     }
@@ -66,10 +63,10 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit(Customer $customer)
     {
         //
     }
@@ -78,34 +75,22 @@ class ItemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item, int $mode)
+    public function update(Request $request, Customer $customer)
     {
-        request()->validate([
-            'amount' => 'required|numeric',
-        ]);
-        if($mode == 1)
-            $item->update(['amount' => $item->amount += (float)$request->amount]);
-        else
-            $item->update(['amount' => $item->amount -= $request->amount]);
-        if($item->amount<0)
-            $item->update(['amount' => $item->amount=0]);
-        return back();
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy(Customer $customer)
     {
-        $item->delete();
-        return back()->with('success','Post Deleted');
-
-
+        //
     }
 }
