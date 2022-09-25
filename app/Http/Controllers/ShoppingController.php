@@ -17,7 +17,8 @@ class ShoppingController extends Controller
     public function index(Customer $customer)
     {
         return view('shoppings',[
-            'shoppings' => $customer->shopping()
+            'shoppings' => $customer
+                ->shoppings()->orderBy('created_at','desc')
                 ->paginate(6),
             'customer' => $customer
         ]);
@@ -51,8 +52,10 @@ class ShoppingController extends Controller
 
         //updates
         $shopping->update(['cost' => $shopping->item->price * $shopping->amount]);
-        $shopping->item->update(['amount' => $shopping->item->amount - $shopping->amount]);
-        $shopping->customer->update(['debt' => $shopping->customer->debt + $shopping->cost]);
+        $item = $shopping->item;
+        $item->update(['amount' => $item->amount-=$shopping->amount]);
+        $customer = $shopping->customer;
+        $customer->update(['debt' => $shopping->customer->debt += $shopping->cost]);
 
         return redirect('/customers');
     }
@@ -99,8 +102,8 @@ class ShoppingController extends Controller
      */
     public function destroy(Shopping $shopping, Customer $customer)
     {
-        $shopping->item->update(['amount' => $shopping->item->amount + $shopping->amount]);
-        $shopping->customer->update(['debt' => $shopping->customer->debt - $shopping->cost]);
+        $shopping->item->update(['amount' => $shopping->item->amount += $shopping->amount]);
+        $shopping->customer->update(['debt' => $shopping->customer->debt -= $shopping->cost]);
 
         $customer = $shopping->customer;
         $shopping->delete();

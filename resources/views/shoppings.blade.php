@@ -9,6 +9,11 @@
 
             <x-submit_button color="green-500">Create New Shopping</x-submit_button>
         </form>
+        <form method="GET" action="/customers">
+            @csrf
+
+            <x-submit_button color="red-500">Return Back</x-submit_button>
+        </form>
         <form method="GET" action="/logout">
             @csrf
 

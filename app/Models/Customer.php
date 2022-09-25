@@ -19,7 +19,7 @@ class Customer extends Model
         );
     }
 
-    public function shopping()
+    public function shoppings()
     {
         return $this->hasMany(Shopping::class);
     }
