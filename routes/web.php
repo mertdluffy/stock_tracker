@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ShoppingController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,11 @@ Route::get('/create/shopping',[ShoppingController::class,'create'])->middleware(
 Route::post('/create/shopping',[ShoppingController::class,'store'])->middleware('auth');
 Route::delete('/shopping/{shopping}',[ShoppingController::class,'destroy'])->middleware('auth');
 
+Route::post('/customer/{customer}/payments',[PaymentController::class,'index'])->middleware('auth');
+Route::get('/customer/{customer}/payments',[PaymentController::class,'index'])->middleware('auth');
+Route::get('/create/payment',[PaymentController::class,'create'])->middleware('auth');
+Route::post('/create/payment',[PaymentController::class,'store'])->middleware('auth');
+Route::delete('/payment/{payment}',[PaymentController::class,'destroy'])->middleware('auth');
 
 
 Route::get('/logout',[UserController::class,'destroy'])->middleware('auth');

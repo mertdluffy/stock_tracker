@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Shopping;
+use App\Models\Payment;
 use Illuminate\Http\Request;
-use App\Models\Customer;
-use App\Models\Item;
 use Illuminate\Validation\Rule;
+use App\Models\Customer;
 
-class ShoppingController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,9 @@ class ShoppingController extends Controller
      */
     public function index(Customer $customer)
     {
-        return view('shoppings',[
-            'shoppings' => $customer
-                ->shoppings()->orderBy('created_at','desc')
+        return view('payments',[
+            'payments' => $customer
+                ->payments()->orderBy('created_at','desc')
                 ->paginate(6),
             'customer' => $customer
         ]);
@@ -32,7 +31,7 @@ class ShoppingController extends Controller
      */
     public function create()
     {
-        return view('create_shopping');
+        return view('create_payment');
     }
 
     /**
@@ -44,22 +43,16 @@ class ShoppingController extends Controller
     public function store(Request $request)
     {
         $attributes = request()->validate([
-            'item_id' => 'required',
-            'amount' => 'required',
+            'cost' => 'required',
             'customer_id' => 'required',
         ]);
-        if (Item::find($attributes['item_id'])->amount < $attributes['amount']){
-            return redirect('/customers');
-        }
 
-        $shopping = Shopping::create($attributes);
+        $payment = Payment::create($attributes);
 
         //updates
-        $shopping->update(['cost' => $shopping->item->price * $shopping->amount]);
-        $item = $shopping->item;
-        $item->update(['amount' => $item->amount-=$shopping->amount]);
-        $customer = $shopping->customer;
-        $customer->update(['debt' => $shopping->customer->debt += $shopping->cost]);
+
+        $customer = $payment->customer;
+        $customer->update(['debt' => $payment->customer->debt -= $payment->cost]);
 
         return redirect('/customers');
     }
@@ -70,7 +63,7 @@ class ShoppingController extends Controller
      * @param  \App\Models\Shopping  $shopping
      * @return \Illuminate\Http\Response
      */
-    public function show(Shopping $shopping)
+    public function show(Payment $payment)
     {
         //
     }
@@ -81,7 +74,7 @@ class ShoppingController extends Controller
      * @param  \App\Models\Shopping  $shopping
      * @return \Illuminate\Http\Response
      */
-    public function edit(Shopping $shopping)
+    public function edit(Payment $payment)
     {
         //
     }
@@ -93,7 +86,7 @@ class ShoppingController extends Controller
      * @param  \App\Models\Shopping  $shopping
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Shopping $shopping)
+    public function update(Request $request, Payment $payment)
     {
         //
     }
@@ -104,13 +97,13 @@ class ShoppingController extends Controller
      * @param  \App\Models\Shopping  $shopping
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Shopping $shopping, Customer $customer)
+    public function destroy(Payment $payment, Customer $customer)
     {
-        $shopping->item->update(['amount' => $shopping->item->amount += $shopping->amount]);
-        $shopping->customer->update(['debt' => $shopping->customer->debt -= $shopping->cost]);
 
-        $customer = $shopping->customer;
-        $shopping->delete();
-        return redirect("/customer/$customer->id/shoppings");
+        $payment->customer->update(['debt' => $payment->customer->debt += $payment->cost]);
+
+        $customer = $payment->customer;
+        $payment->delete();
+        return redirect("/customer/$customer->id/payments");
     }
 }

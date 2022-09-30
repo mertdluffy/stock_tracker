@@ -5,16 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Shopping extends Model
+class Payment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['amount','item_id','customer_id','cost'];
+    protected $fillable = ['customer_id','cost'];
 
-    public function item()
-    {
-        return $this->hasOne(Item::class);
-    }
     public function customer()
     {
         return $this->belongsTo(Customer::class);

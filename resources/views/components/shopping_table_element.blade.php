@@ -1,4 +1,4 @@
-@props(['shopping','mode'])
+@props(['shopping'])
 
 <tr>
     <th scope="row">{{$shopping->customer->name}}</th>
