@@ -1,12 +1,12 @@
 <x-layout>
     <header class="container d-flex justify-content-between">
         <h1 class="my-4">Stocks</h1>
-        <form method="GET" action="/customers">
+        <form method="GET" action="/{{app()->getLocale()}}/customers">
             @csrf
 
             <x-submit_button color="green-500">Customers</x-submit_button>
         </form>
-        <form method="GET" action="/dashboard">
+        <form method="GET" action="/{{app()->getLocale()}}/dashboard">
             @if(request('category'))
                 <input type="hidden" name="category" value="{{request('category')}}">
             @endif
@@ -16,12 +16,12 @@
 
         <x-category-dropdown />
 
-        <form method="GET" action="/create">
+        <form method="GET" action="/{{app()->getLocale()}}/create">
             @csrf
 
             <x-submit_button color="green-500">Create New Item</x-submit_button>
         </form>
-        <form method="GET" action="/logout">
+        <form method="GET" action="/{{app()->getLocale()}}/logout">
             @csrf
 
             <x-submit_button color="red-500">Log Out</x-submit_button>

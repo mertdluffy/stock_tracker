@@ -50,7 +50,7 @@ class ItemController extends Controller
 
         Item::create($attributes);
 
-        return redirect('/dashboard');
+        return redirect(app()->getLocale().'/dashboard');
     }
 
     /**
@@ -105,7 +105,7 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         $item->delete();
-        return back()->with('success','Post Deleted');
+        return back();
 
 
     }

@@ -1,23 +1,23 @@
 <x-layout>
     <header class="container d-flex justify-content-between">
         <h1 class="my-4">Customers</h1>
-        <form method="GET" action="/">
+        <form method="GET" action="/{{app()->getLocale()}}/">
             @csrf
 
             <x-submit_button color="green-500">Stocks</x-submit_button>
         </form>
-        <form method="GET" action="/customers">
+        <form method="GET" action="/{{app()->getLocale()}}/customers">
             <input value="{{request('search')}}" type="text" name="search" placeholder="Find Customer"
                    class="p-2 mt-4 bg-transparent placeholder-black font-semibold text-sm border border-sky-500 rounded-full">
         </form>
 
 
-        <form method="GET" action="/create/customer">
+        <form method="GET" action="/{{app()->getLocale()}}/create/customer">
             @csrf
 
             <x-submit_button color="green-500">Create New Customer</x-submit_button>
         </form>
-        <form method="GET" action="/logout">
+        <form method="GET" action="/{{app()->getLocale()}}/logout">
             @csrf
 
             <x-submit_button color="red-500">Log Out</x-submit_button>

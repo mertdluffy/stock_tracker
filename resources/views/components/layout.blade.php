@@ -18,6 +18,25 @@
 
 </head>
 <body class="antialiased">
+
 {{$slot}}
+<div class="container d-flex justify-content-start align-items-center">
+    <p class="mx-2">Change Language :</p>
+
+    @if(app()->getLocale() == "tr")
+        <form method="GET" action="/{{app()->getLocale()}}/localize/0" enctype="multipart/form-data">
+            @csrf
+            <x-submit_button color="green-100">En</x-submit_button>
+
+        </form>
+    @else
+        <form method="GET" action="/{{app()->getLocale()}}/localize/1" enctype="multipart/form-data">
+            @csrf
+            <x-submit_button color="green-100">Tr</x-submit_button>
+
+        </form>
+    @endif
+</div>
+
 </body>
 </html>

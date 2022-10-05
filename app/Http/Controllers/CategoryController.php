@@ -22,6 +22,6 @@ class CategoryController extends Controller
 
         Category::create($attributes);
 
-        return redirect('/create');
+        return redirect(app()->getLocale().'/create');
     }
 }

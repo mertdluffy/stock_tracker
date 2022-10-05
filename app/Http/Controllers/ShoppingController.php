@@ -49,7 +49,7 @@ class ShoppingController extends Controller
             'customer_id' => 'required',
         ]);
         if (Item::find($attributes['item_id'])->amount < $attributes['amount']){
-            return redirect('/customers');
+            return redirect(app()->getLocale().'/customers');
         }
 
         $shopping = Shopping::create($attributes);
@@ -61,7 +61,7 @@ class ShoppingController extends Controller
         $customer = $shopping->customer;
         $customer->update(['debt' => $shopping->customer->debt += $shopping->cost]);
 
-        return redirect('/customers');
+        return redirect(app()->getLocale().'/customers');
     }
 
     /**
@@ -111,6 +111,6 @@ class ShoppingController extends Controller
 
         $customer = $shopping->customer;
         $shopping->delete();
-        return redirect("/customer/$customer->id/shoppings");
+        return redirect(app()->getLocale()."/customer/$customer->id/shoppings");
     }
 }

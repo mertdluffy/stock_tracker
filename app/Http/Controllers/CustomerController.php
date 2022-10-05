@@ -46,7 +46,7 @@ class CustomerController extends Controller
 
         Customer::create($attributes);
 
-        return redirect('/customers');
+        return redirect(app()->getLocale().'/customers');
     }
 
     /**
@@ -95,7 +95,7 @@ class CustomerController extends Controller
         $customer->payments()->delete();
         $customer->delete();
 
-        return redirect('/customers');
+        return redirect(app()->getLocale().'/customers');
 
     }
 }

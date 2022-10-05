@@ -4,17 +4,17 @@
 
 
 
-        <form method="GET" action="/create/payment">
+        <form method="GET" action="/{{app()->getLocale()}}/create/payment">
             @csrf
 
             <x-submit_button color="green-500">Create New Payment</x-submit_button>
         </form>
-        <form method="GET" action="/customers">
+        <form method="GET" action="/{{app()->getLocale()}}/customers">
             @csrf
 
             <x-submit_button color="red-500">Return Back</x-submit_button>
         </form>
-        <form method="GET" action="/logout">
+        <form method="GET" action="/{{app()->getLocale()}}/logout">
             @csrf
 
             <x-submit_button color="red-500">Log Out</x-submit_button>

@@ -54,7 +54,7 @@ class PaymentController extends Controller
         $customer = $payment->customer;
         $customer->update(['debt' => $payment->customer->debt -= $payment->cost]);
 
-        return redirect('/customers');
+        return redirect(app()->getLocale().'/customers');
     }
 
     /**
@@ -104,6 +104,6 @@ class PaymentController extends Controller
 
         $customer = $payment->customer;
         $payment->delete();
-        return redirect("/customer/$customer->id/payments");
+        return redirect(app()->getLocale()."/customer/$customer->id/payments");
     }
 }

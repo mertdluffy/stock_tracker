@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 use App\Models\User;
 use App\Models\Category;
@@ -26,10 +27,20 @@ class UserController extends Controller
 
 
         session()->regenerate();
-
-        return redirect('/dashboard')->with('success','Welcome Back');
+        return redirect(app()->getLocale().'/dashboard')->with('success','Welcome Back');
     }
+    public function edit(Request $request,string $loc,string $mode){
+        $prev = "en";
+        if($mode == 0) {
+            app()->setLocale("en");
+            $prev ="tr";
+        }
+        else
+            app()->setLocale("tr");
 
+        return redirect()->to(Str::replace($prev,app()->getLocale(),url()->previous()));
+
+    }
     public function destroy(){
         auth()->logout();
         return redirect('/');
@@ -55,7 +66,7 @@ class UserController extends Controller
             return view('login');
         }
         else{
-            return redirect('/dashboard');
+            return redirect(app()->getLocale().'/dashboard');
         }
     }
 }
