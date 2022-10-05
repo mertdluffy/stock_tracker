@@ -1,23 +1,23 @@
 <x-layout>
     <header class="container d-flex justify-content-between">
-        <h1 class="my-4">Payments of {{$customer->name}}</h1>
+        <h1 class="my-4">{{__('Payments of')}} {{$customer->name}}</h1>
 
 
 
         <form method="GET" action="/{{app()->getLocale()}}/create/payment">
             @csrf
 
-            <x-submit_button color="green-500">Create New Payment</x-submit_button>
+            <x-submit_button color="green-500">{{__('Create New Payment')}}</x-submit_button>
         </form>
         <form method="GET" action="/{{app()->getLocale()}}/customers">
             @csrf
 
-            <x-submit_button color="red-500">Return Back</x-submit_button>
+            <x-submit_button color="red-500">{{__('Return Back')}}</x-submit_button>
         </form>
         <form method="GET" action="/{{app()->getLocale()}}/logout">
             @csrf
 
-            <x-submit_button color="red-500">Log Out</x-submit_button>
+            <x-submit_button color="red-500">{{__('Log Out')}}</x-submit_button>
         </form>
     </header>
     <div class="container p-6 ">
@@ -27,10 +27,10 @@
             <thead class="thead-dark">
             <tr>
 
-                <th scope="col">Customer Name</th>
-                <th scope="col">Cost</th>
-                <th scope="col">Date</th>
-                <th scope="col">Delete</th>
+                <th scope="col">{{__('Customer Name')}}</th>
+                <th scope="col">{{__('Cost')}}</th>
+                <th scope="col">{{__('Date')}}</th>
+                <th scope="col">{{__('Delete')}}</th>
             </tr>
             </thead>
             <tbody>
@@ -48,7 +48,7 @@
             {!! $payments->links() !!}
         </div>
         @else
-        <p>There is not any payment.</p>
+        <p>{{__('There is not any payment.')}}</p>
         @endif
     </div>
 </x-layout>

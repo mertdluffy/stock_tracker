@@ -3,11 +3,11 @@
     <div class="container py-8 max-w-4xl mx-auto border-gray-200 d-flex justify-content-between">
 
         <form method="POST" action="/{{app()->getLocale()}}/create/payment" enctype="multipart/form-data">
-            <h1>Create New Payment</h1>
+            <h1>{{__('Create New Payment')}}</h1>
             @csrf
 
             <div class="mb-6">
-                <x-form_label name="Customer"/>
+                <x-form_label name="customer"/>
                 <select name="customer_id" id="customer_id">
                     @php
                         $customers = \App\Models\Customer::all();
@@ -26,13 +26,13 @@
             <x-form_input name="cost"/>
 
 
-            <x-submit_button color="blue-500">Create</x-submit_button>
+            <x-submit_button color="blue-500">{{__('Create')}}</x-submit_button>
         </form>
 
         <form method="GET" action="/{{app()->getLocale()}}/customers" enctype="multipart/form-data">
             @csrf
 
-            <x-submit_button>Return Back to Customers</x-submit_button>
+            <x-submit_button>{{__('Return Back to Customers')}}</x-submit_button>
         </form>
 
     </div>

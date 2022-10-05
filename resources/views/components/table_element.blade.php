@@ -11,7 +11,7 @@
             @csrf
 
             <x-form_input name="amount" />
-            <x-submit_button color="green-100">Add</x-submit_button>
+            <x-submit_button color="green-100">{{__('Add')}}</x-submit_button>
         </form>
     </td>
     <td>
@@ -19,7 +19,7 @@
             @csrf
 
             <x-form_input name="amount" />
-            <x-submit_button color="red-100">Remove</x-submit_button>
+            <x-submit_button color="red-100">{{__('Remove')}}</x-submit_button>
         </form>
     </td>
     <td>
@@ -27,7 +27,7 @@
             @csrf
             @method('DELETE')
 
-            <x-submit_button>Delete</x-submit_button>
+            <x-submit_button>{{__('Delete')}}</x-submit_button>
         </form>
     </td>
 </tr>

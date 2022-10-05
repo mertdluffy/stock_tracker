@@ -21,7 +21,7 @@
 
 {{$slot}}
 <div class="container d-flex justify-content-start align-items-center">
-    <p class="mx-2">Change Language :</p>
+    <p class="mx-2">{{__('Change Language')}} :</p>
 
     @if(app()->getLocale() == "tr")
         <form method="GET" action="/{{app()->getLocale()}}/localize/0" enctype="multipart/form-data">

@@ -1,23 +1,23 @@
 <x-layout>
     <header class="container d-flex justify-content-between">
-        <h1 class="my-4">Shoppings of {{$customer->name}}</h1>
+        <h1 class="my-4">{{__('Shoppings of')}} {{$customer->name}}</h1>
 
 
 
         <form method="GET" action="/{{app()->getLocale()}}/create/shopping">
             @csrf
 
-            <x-submit_button color="green-500">Create New Shopping</x-submit_button>
+            <x-submit_button color="green-500">{{__('Create New Shopping')}}</x-submit_button>
         </form>
         <form method="GET" action="/{{app()->getLocale()}}/customers">
             @csrf
 
-            <x-submit_button color="red-500">Return Back</x-submit_button>
+            <x-submit_button color="red-500">{{__('Return Back')}}</x-submit_button>
         </form>
         <form method="GET" action="/{{app()->getLocale()}}/logout">
             @csrf
 
-            <x-submit_button color="red-500">Log Out</x-submit_button>
+            <x-submit_button color="red-500">{{__('Log Out')}}</x-submit_button>
         </form>
     </header>
     <div class="container p-6 ">
@@ -27,12 +27,12 @@
             <thead class="thead-dark">
             <tr>
 
-                <th scope="col">Customer Name</th>
-                <th scope="col">Item</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Cost</th>
-                <th scope="col">Date</th>
-                <th scope="col">Delete</th>
+                <th scope="col">{{__('Customer Name')}}</th>
+                <th scope="col">{{__('Item')}}</th>
+                <th scope="col">{{__('Amount')}}</th>
+                <th scope="col">{{__('Cost')}}</th>
+                <th scope="col">{{__('Date')}}</th>
+                <th scope="col">{{__('Delete')}}</th>
             </tr>
             </thead>
             <tbody>
@@ -50,7 +50,7 @@
             {!! $shoppings->links() !!}
         </div>
         @else
-        <p>There is not any shopping.</p>
+        <p>{{__('There is not any shopping.')}}</p>
         @endif
     </div>
 </x-layout>

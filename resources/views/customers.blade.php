@@ -1,13 +1,13 @@
 <x-layout>
     <header class="container d-flex justify-content-between">
-        <h1 class="my-4">Customers</h1>
+        <h1 class="my-4">{{__('Customers')}}</h1>
         <form method="GET" action="/{{app()->getLocale()}}/">
             @csrf
 
-            <x-submit_button color="green-500">Stocks</x-submit_button>
+            <x-submit_button color="green-500">{{__('Stocks')}}</x-submit_button>
         </form>
         <form method="GET" action="/{{app()->getLocale()}}/customers">
-            <input value="{{request('search')}}" type="text" name="search" placeholder="Find Customer"
+            <input value="{{request('search')}}" type="text" name="search" placeholder="{{__('Find Customer')}}"
                    class="p-2 mt-4 bg-transparent placeholder-black font-semibold text-sm border border-sky-500 rounded-full">
         </form>
 
@@ -15,12 +15,12 @@
         <form method="GET" action="/{{app()->getLocale()}}/create/customer">
             @csrf
 
-            <x-submit_button color="green-500">Create New Customer</x-submit_button>
+            <x-submit_button color="green-500">{{__('Create New Customer')}}</x-submit_button>
         </form>
         <form method="GET" action="/{{app()->getLocale()}}/logout">
             @csrf
 
-            <x-submit_button color="red-500">Log Out</x-submit_button>
+            <x-submit_button color="red-500">{{__('Log Out')}}</x-submit_button>
         </form>
     </header>
     <div class="container p-6 ">
@@ -30,11 +30,11 @@
             <thead class="thead-dark">
             <tr>
 
-                <th scope="col">Name</th>
-                <th scope="col">Debt</th>
-                <th scope="col">Shoppings</th>
-                <th scope="col">Payments</th>
-                <th scope="col">Delete Customer</th>
+                <th scope="col">{{__('Name')}}</th>
+                <th scope="col">{{__('Debt')}}</th>
+                <th scope="col">{{__('Shoppings')}}</th>
+                <th scope="col">{{__('Payments')}}</th>
+                <th scope="col">{{__('Delete Customer')}}</th>
             </tr>
             </thead>
             <tbody>

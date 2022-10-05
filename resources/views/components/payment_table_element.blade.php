@@ -11,7 +11,7 @@
             @csrf
             @method('DELETE')
 
-            <x-submit_button>Delete</x-submit_button>
+            <x-submit_button>{{__('Delete')}}</x-submit_button>
         </form>
     </td>
 </tr>
