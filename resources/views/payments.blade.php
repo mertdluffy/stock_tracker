@@ -4,7 +4,7 @@
 
 
 
-        <form method="GET" action="/{{app()->getLocale()}}/create/payment">
+        <form method="GET" action="/{{app()->getLocale()}}/payments/create">
             @csrf
 
             <x-submit_button color="green-500">{{__('Create New Payment')}}</x-submit_button>

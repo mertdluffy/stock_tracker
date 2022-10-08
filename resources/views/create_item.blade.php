@@ -2,7 +2,7 @@
 
     <div class="container py-8 max-w-4xl mx-auto border-gray-200 d-flex justify-content-between">
 
-        <form method="POST" action="/{{app()->getLocale()}}/create" enctype="multipart/form-data">
+        <form method="POST" action="{{url(app()->getLocale().'/items')}}" enctype="multipart/form-data">
             <h1>{{__('Create New Item')}}</h1>
             @csrf
             <x-form_input name="name"/>
@@ -29,13 +29,13 @@
             <x-submit_button color="blue-500">{{__('Create')}}</x-submit_button>
         </form>
 
-        <form method="GET" action="/{{app()->getLocale()}}/create/category">
+        <form method="GET" action="{{url(app()->getLocale().'/category')}}">
             @csrf
 
             <x-submit_button color="green-200">{{__('Create New Category')}}</x-submit_button>
         </form>
 
-        <form method="GET" action="/{{app()->getLocale()}}/" enctype="multipart/form-data">
+        <form method="GET" action="{{url(app()->getLocale().'/items')}}" enctype="multipart/form-data">
             @csrf
 
             <x-submit_button>{{__('Return Home')}}</x-submit_button>

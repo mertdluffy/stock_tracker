@@ -7,7 +7,7 @@
     <td>{{$item->type}}</td>
     <td>{{$item->price}} $</td>
     <td>
-        <form method="POST" action="/{{app()->getLocale()}}/{{$item->id}}/1" class="flex justify-evenly">
+        <form method="GET" action="{{url(app()->getLocale().'/items/'. $item->id .'/edit')}}" class="flex justify-evenly">
             @csrf
 
             <x-form_input name="amount" />
@@ -15,15 +15,15 @@
         </form>
     </td>
     <td>
-        <form method="POST" action="/{{app()->getLocale()}}/{{$item->id}}/0" class="flex justify-evenly">
+        <form method="POST" action="{{url(app()->getLocale().'/items/'. $item->id )}}" class="flex justify-evenly">
             @csrf
-
+            @method('PUT')
             <x-form_input name="amount" />
             <x-submit_button color="red-100">{{__('Remove')}}</x-submit_button>
         </form>
     </td>
     <td>
-        <form method="POST" action="/{{app()->getLocale()}}/{{$item->id}}">
+        <form method="POST" action="{{url(app()->getLocale().'/items/'.$item->id)}}">
             @csrf
             @method('DELETE')
 

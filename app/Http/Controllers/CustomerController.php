@@ -89,7 +89,7 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy(string $loc,Customer $customer)
     {
         $customer->shoppings()->delete();
         $customer->payments()->delete();

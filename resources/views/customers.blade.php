@@ -12,7 +12,7 @@
         </form>
 
 
-        <form method="GET" action="/{{app()->getLocale()}}/create/customer">
+        <form method="GET" action="/{{app()->getLocale()}}/customers/create">
             @csrf
 
             <x-submit_button color="green-500">{{__('Create New Customer')}}</x-submit_button>

@@ -104,7 +104,7 @@ class ShoppingController extends Controller
      * @param  \App\Models\Shopping  $shopping
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Shopping $shopping, Customer $customer)
+    public function destroy(string $loc,Shopping $shopping, Customer $customer)
     {
         $shopping->item->update(['amount' => $shopping->item->amount += $shopping->amount]);
         $shopping->customer->update(['debt' => $shopping->customer->debt -= $shopping->cost]);

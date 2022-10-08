@@ -8,7 +8,7 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    public function create()
+    public function index()
     {
         return view('create_category');
     }
@@ -22,6 +22,6 @@ class CategoryController extends Controller
 
         Category::create($attributes);
 
-        return redirect(app()->getLocale().'/create');
+        return redirect(app()->getLocale().'/items/create');
     }
 }

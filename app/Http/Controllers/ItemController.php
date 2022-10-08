@@ -41,6 +41,7 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+
         $attributes = request()->validate([
             'name' => ['required', Rule::unique('items','name')],
             'type' => 'required',
@@ -50,7 +51,7 @@ class ItemController extends Controller
 
         Item::create($attributes);
 
-        return redirect(app()->getLocale().'/dashboard');
+        return redirect(url(app()->getLocale().'/items'));
     }
 
     /**
@@ -70,9 +71,14 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit(string $loc,Request $request,Item $item)
     {
-        //
+        request()->validate([
+            'amount' => 'required|numeric',
+        ]);
+        $item->update(['amount' => $item->amount += (float)$request->amount]);
+
+        return back();
     }
 
     /**
@@ -82,17 +88,13 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item, int $mode)
+    public function update(string $loc,Request $request, Item $item)
     {
         request()->validate([
             'amount' => 'required|numeric',
         ]);
-        if($mode == 1)
-            $item->update(['amount' => $item->amount += (float)$request->amount]);
-        else
-            $item->update(['amount' => $item->amount -= $request->amount]);
-        if($item->amount<0)
-            $item->update(['amount' => $item->amount=0]);
+        $item->update(['amount' => $item->amount -= (float)$request->amount]);
+
         return back();
     }
 
@@ -102,7 +104,7 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy(string $loc,Item $item)
     {
         $item->delete();
         return back();

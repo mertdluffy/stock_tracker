@@ -97,7 +97,7 @@ class PaymentController extends Controller
      * @param  \App\Models\Shopping  $shopping
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Payment $payment, Customer $customer)
+    public function destroy(string $loc,Payment $payment, Customer $customer)
     {
 
         $payment->customer->update(['debt' => $payment->customer->debt += $payment->cost]);

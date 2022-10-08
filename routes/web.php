@@ -21,40 +21,23 @@ use App\Http\Middleware\Localize;
 */
 Route::group(['prefix' => '{loc?}','middleware' => 'localize'],function(){
     Route::get('/', [UserController::class,'store']);
-
     Route::get('/localize/{mode}',[UserController::class,'edit']);
-
-    Route::get('/customers',[CustomerController::class,'index'])->middleware('auth');
-    Route::post('/create/customer',[CustomerController::class,'store'])->middleware('auth');
-    Route::get('/create/customer',[CustomerController::class,'create'])->middleware('auth');
-    Route::delete('/customer/{customer}',[CustomerController::class,'destroy'])->middleware('auth');
-
-    Route::post('/customer/{customer}/shoppings',[ShoppingController::class,'index'])->middleware('auth');
-    Route::get('/customer/{customer}/shoppings',[ShoppingController::class,'index'])->middleware('auth');
-    Route::get('/create/shopping',[ShoppingController::class,'create'])->middleware('auth');
-    Route::post('/create/shopping',[ShoppingController::class,'store'])->middleware('auth');
-    Route::delete('/shopping/{shopping}',[ShoppingController::class,'destroy'])->middleware('auth');
-
-    Route::post('/customer/{customer}/payments',[PaymentController::class,'index'])->middleware('auth');
-    Route::get('/customer/{customer}/payments',[PaymentController::class,'index'])->middleware('auth');
-    Route::get('/create/payment',[PaymentController::class,'create'])->middleware('auth');
-    Route::post('/create/payment',[PaymentController::class,'store'])->middleware('auth');
-    Route::delete('/payment/{payment}',[PaymentController::class,'destroy'])->middleware('auth');
-
-
     Route::get('/logout',[UserController::class,'destroy'])->middleware('auth');
     Route::post('/login',[UserController::class,'create'])->middleware('guest');
 
-    Route::get('/dashboard',[ItemController::class,'index'])->middleware('auth');
+    Route::resource('/customers',CustomerController::class)->middleware('auth');
 
-    Route::post('/create/category',[CategoryController::class,'store'])->middleware('auth');
-    Route::get('/create/category',[CategoryController::class,'create'])->middleware('auth');
-    Route::get('/create',[ItemController::class,'create'])->middleware('auth');
+    Route::post('/customer/{customer}/shoppings',[ShoppingController::class,'index'])->middleware('auth');
+    Route::get('/customer/{customer}/shoppings',[ShoppingController::class,'index'])->middleware('auth');
+    Route::resource('/shoppings',ShoppingController::class)->middleware('auth');
 
-    Route::post('/create',[ItemController::class,'store'])->middleware('auth');
-    Route::delete('/{item}',[ItemController::class,'destroy'])->middleware('auth');
-    Route::post('/{item}/{mode}',[ItemController::class,'update'])->middleware('auth');
+    Route::post('/customer/{customer}/payments',[PaymentController::class,'index'])->middleware('auth');
+    Route::get('/customer/{customer}/payments',[PaymentController::class,'index'])->middleware('auth');
+    Route::resource('/payments',PaymentController::class)->middleware('auth');
 
+    Route::resource('/items',ItemController::class)->middleware('auth');
+
+    Route::resource('/category',CategoryController::class)->middleware('auth');
 
 });
 

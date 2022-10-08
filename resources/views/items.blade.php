@@ -1,12 +1,12 @@
 <x-layout>
     <header class="container d-flex justify-content-between">
         <h1 class="my-4">{{__("Stocks")}}</h1>
-        <form method="GET" action="/{{app()->getLocale()}}/customers">
+        <form method="GET" action="{{url(app()->getLocale().'/customers')}}">
             @csrf
 
             <x-submit_button color="green-500">{{__('Customers')}}</x-submit_button>
         </form>
-        <form method="GET" action="/{{app()->getLocale()}}/dashboard">
+        <form method="GET" action="{{url(app()->getLocale().'/items')}}">
             @if(request('category'))
                 <input type="hidden" name="category" value="{{request('category')}}">
             @endif
@@ -16,7 +16,7 @@
 
         <x-category-dropdown />
 
-        <form method="GET" action="/{{app()->getLocale()}}/create">
+        <form method="GET" action="{{url(app()->getLocale().'/items/create')}}">
             @csrf
 
             <x-submit_button color="green-500">{{__('Create New Item')}}</x-submit_button>
@@ -59,7 +59,7 @@
             {!! $items->links() !!}
         </div>
         @else
-        <p>There is not any item. Please create an item.</p>
+        <p>{{__('There is not any item. Please create an item.')}}</p>
         @endif
     </div>
 </x-layout>

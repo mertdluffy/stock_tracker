@@ -7,7 +7,7 @@
         {{$payment->created_at}}
     </td>
     <td>
-        <form method="POST" action="/{{app()->getLocale()}}/payment/{{$payment->id}}">
+        <form method="POST" action="/{{app()->getLocale()}}/payments/{{$payment->id}}">
             @csrf
             @method('DELETE')
 

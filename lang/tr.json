@@ -48,5 +48,6 @@
     "There is not any payment.": "Hiç Ödeme Yapılmamış.",
     "Payments of": "Ödemeleri",
     "Create New Payment": "Yeni Ödeme Oluştur",
-    "cost": "tutar"
+    "cost": "tutar",
+    "There is not any item. Please create an item.": "Henüz hiç ürün yok, Lütfen yeni ürün oluşturun."
 }

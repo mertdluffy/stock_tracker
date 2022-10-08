@@ -16,7 +16,7 @@
         </form>
     </td>
     <td>
-        <form method="POST" action="/{{app()->getLocale()}}/customer/{{$customer->id}}">
+        <form method="POST" action="/{{app()->getLocale()}}/customers/{{$customer->id}}">
             @csrf
             @method('DELETE')
 
