@@ -6,19 +6,19 @@
     <td>{{$item->amount}}</td>
     <td>{{$item->type}}</td>
     <td>{{$item->price}} $</td>
-    <td>
-        <form method="GET" action="{{url(app()->getLocale().'/items/'. $item->id .'/edit')}}" class="flex justify-evenly">
+    <td >
+        <form method="GET" action="{{url(app()->getLocale().'/items/'. $item->id .'/edit')}} " class = "d-flex justify-content-center align-items-center">
             @csrf
 
-            <x-form_input name="amount" />
+            <x-edit_amount_form_input name="amount" width="75"/>
             <x-submit_button color="green-100">{{__('Add')}}</x-submit_button>
         </form>
     </td>
-    <td>
-        <form method="POST" action="{{url(app()->getLocale().'/items/'. $item->id )}}" class="flex justify-evenly">
+    <td >
+        <form method="POST" action="{{url(app()->getLocale().'/items/'. $item->id )}}" class = "d-flex justify-content-center align-items-center">
             @csrf
             @method('PUT')
-            <x-form_input name="amount" />
+            <x-edit_amount_form_input name="amount" width="75"/>
             <x-submit_button color="red-100">{{__('Remove')}}</x-submit_button>
         </form>
     </td>

@@ -1,7 +1,7 @@
 <x-layout>
     <header class="container d-flex justify-content-between">
         <h1 class="my-4">{{__('Customers')}}</h1>
-        <form method="GET" action="/{{app()->getLocale()}}/">
+        <form method="GET" action="/{{app()->getLocale()}}/items">
             @csrf
 
             <x-submit_button color="green-500">{{__('Stocks')}}</x-submit_button>

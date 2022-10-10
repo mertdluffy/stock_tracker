@@ -27,7 +27,7 @@ class UserController extends Controller
 
 
         session()->regenerate();
-        return redirect(app()->getLocale().url('/items'))->with('success','Welcome Back');
+        return redirect(url(app()->getLocale().'/items'));
     }
     public function edit(Request $request,string $loc,string $mode){
         $prev = "en";
@@ -66,7 +66,8 @@ class UserController extends Controller
             return view('login');
         }
         else{
-            return redirect(app()->getLocale().url('/items'));
+
+            return redirect(url(app()->getLocale().'/items'));
         }
     }
 }
