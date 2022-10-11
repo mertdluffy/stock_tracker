@@ -7,7 +7,7 @@
     <td>{{$item->type}}</td>
     <td>{{$item->price}} $</td>
     <td >
-        <form method="GET" action="{{url(app()->getLocale().'/items/'. $item->id .'/edit')}} " class = "d-flex justify-content-center align-items-center">
+        <form method="GET" action="{{url(app()->getLocale().'/items/'. $item->id .'/edit')}} " class = "d-flex align-items-center">
             @csrf
 
             <x-edit_amount_form_input name="amount" width="75"/>
@@ -15,7 +15,7 @@
         </form>
     </td>
     <td >
-        <form method="POST" action="{{url(app()->getLocale().'/items/'. $item->id )}}" class = "d-flex justify-content-center align-items-center">
+        <form method="POST" action="{{url(app()->getLocale().'/items/'. $item->id )}}" class = "d-flex align-items-center">
             @csrf
             @method('PUT')
             <x-edit_amount_form_input name="amount" width="75"/>

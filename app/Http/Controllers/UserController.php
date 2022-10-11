@@ -38,7 +38,7 @@ class UserController extends Controller
         else
             app()->setLocale("tr");
 
-        return redirect()->to(Str::replace($prev,app()->getLocale(),url()->previous()));
+        return redirect()->to(Str::replace($prev,app()->getLocale(),url()->previous()))->with('success',__('Language changed to: ').app()->getLocale());
 
     }
     public function destroy(){

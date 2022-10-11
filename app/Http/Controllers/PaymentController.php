@@ -104,6 +104,6 @@ class PaymentController extends Controller
 
         $customer = $payment->customer;
         $payment->delete();
-        return redirect(app()->getLocale()."/customer/$customer->id/payments");
+        return redirect(app()->getLocale()."/customer/$customer->id/payments")->with('success',__('Shopping deleted successfully'));
     }
 }

@@ -51,7 +51,7 @@ class ItemController extends Controller
 
         Item::create($attributes);
 
-        return redirect(url(app()->getLocale().'/items'));
+        return redirect(url(app()->getLocale().'/items'))->with('success',__('Item "').$attributes['name'].__('" Created Successfully'));
     }
 
     /**
@@ -106,8 +106,10 @@ class ItemController extends Controller
      */
     public function destroy(string $loc,Item $item)
     {
+        $name = $item->name;
         $item->delete();
-        return back();
+
+        return back()->with('success','Item "'.$name.'" Deleted Successfully');
 
 
     }

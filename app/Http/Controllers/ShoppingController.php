@@ -49,7 +49,7 @@ class ShoppingController extends Controller
             'customer_id' => 'required',
         ]);
         if (Item::find($attributes['item_id'])->amount < $attributes['amount']){
-            return redirect(app()->getLocale().'/customers');
+            return redirect(app()->getLocale().'/customers')->with('error','There is not enough '.Item::find($attributes['item_id'])->name.' on stocks.' );
         }
 
         $shopping = Shopping::create($attributes);
@@ -111,6 +111,6 @@ class ShoppingController extends Controller
 
         $customer = $shopping->customer;
         $shopping->delete();
-        return redirect(app()->getLocale()."/customer/$customer->id/shoppings");
+        return redirect(app()->getLocale()."/customer/$customer->id/shoppings")->with('success',__('Shopping deleted successfully'));
     }
 }

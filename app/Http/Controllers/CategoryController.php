@@ -22,6 +22,6 @@ class CategoryController extends Controller
 
         Category::create($attributes);
 
-        return redirect(app()->getLocale().'/items/create');
+        return redirect(app()->getLocale().'/items/create')->with('success', __('Category "').$attributes['name'].__('" Created Successfully.'));
     }
 }

@@ -1,5 +1,5 @@
 <x-layout>
-
+    @include('components.alert')
     <div class="container py-8 max-w-4xl mx-auto border-gray-200 d-flex justify-content-between">
 
         <form method="POST" action="{{url(app()->getLocale().'/items')}}" enctype="multipart/form-data">

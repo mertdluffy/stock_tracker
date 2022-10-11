@@ -1,4 +1,5 @@
 <x-layout>
+    @include('components.alert')
     <header class="container d-flex justify-content-between">
         <h1 class="my-4">{{__("Stocks")}}</h1>
         <form method="GET" action="{{url(app()->getLocale().'/customers')}}">

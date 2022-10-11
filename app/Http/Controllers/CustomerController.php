@@ -46,7 +46,7 @@ class CustomerController extends Controller
 
         Customer::create($attributes);
 
-        return redirect(app()->getLocale().'/customers');
+        return redirect(app()->getLocale().'/customers')->with('success',__('Customer "').$attributes['name'].__('" Created Successfully'));
     }
 
     /**
@@ -93,9 +93,10 @@ class CustomerController extends Controller
     {
         $customer->shoppings()->delete();
         $customer->payments()->delete();
+        $name = $customer->name;
         $customer->delete();
 
-        return redirect(app()->getLocale().'/customers');
+        return redirect(app()->getLocale().'/customers')->with('success',__('Customer "').$name.__('" Deleted Successfully'));
 
     }
 }
